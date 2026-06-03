@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alp Soyupak — Software & Security Engineer</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #ffffff;
+      --surface: #f8f9fa;
+      --border: #e5e7eb;
+      --text: #111827;
+      --muted: #6b7280;
+      --accent: #2563eb;
+      --accent-light: #eff6ff;
+      --tag-bg: #f1f5f9;
+      --tag-text: #334155;
+      --max-w: 860px;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+    }
+    .nav-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+    .nav-logo {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text);
+      letter-spacing: -0.3px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.875rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .nav-links a:hover { color: var(--accent); text-decoration: none; }
+
+    /* ── SECTIONS ── */
+    section { padding: 72px 24px; }
+    .inner { max-width: var(--max-w); margin: 0 auto; }
+
+    /* ── HERO ── */
+    #hero {
+      padding: 96px 24px 80px;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-eyebrow {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -1px;
+      margin-bottom: 20px;
+    }
+    .hero-sub {
+      font-size: 1.125rem;
+      color: var(--muted);
+      max-width: 560px;
+      margin-bottom: 32px;
+    }
+    .hero-cta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: all 0.15s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-primary:hover { background: #1d4ed8; text-decoration: none; }
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1.5px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+
+    /* ── SECTION HEADERS ── */
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    h2 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 40px;
+    }
+
+    /* ── ABOUT ── */
+    #about { background: var(--surface); border-bottom: 1px solid var(--border); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    .about-text p { color: var(--muted); margin-bottom: 16px; font-size: 1rem; }
+    .about-text p:last-child { margin-bottom: 0; }
+    .about-highlights { display: flex; flex-direction: column; gap: 16px; }
+    .highlight-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 20px;
+    }
+    .highlight-card h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 4px; }
+    .highlight-card p { font-size: 0.85rem; color: var(--muted); }
+
+    /* ── EXPERIENCE ── */
+    #experience { border-bottom: 1px solid var(--border); }
+    .exp-list { display: flex; flex-direction: column; gap: 0; }
+    .exp-item {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 24px;
+      padding: 32px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .exp-item:last-child { border-bottom: none; }
+    .exp-meta { padding-top: 2px; }
+    .exp-date { font-size: 0.78rem; color: var(--muted); font-weight: 500; }
+    .exp-company {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-top: 4px;
+    }
+    .exp-location { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+    .exp-body {}
+    .exp-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .exp-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .exp-bullets li {
+      font-size: 0.9rem;
+      color: var(--muted);
+      padding-left: 16px;
+      position: relative;
+    }
+    .exp-bullets li::before {
+      content: "–";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* ── SKILLS ── */
+    #skills { background: var(--surface); border-bottom: 1px solid var(--border); }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 24px;
+    }
+    .skill-group h4 {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag {
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      border: 1px solid var(--border);
+    }
+
+    /* ── CONTACT ── */
+    #contact { border-bottom: 1px solid var(--border); }
+    .contact-box {
+      background: var(--accent-light);
+      border: 1px solid #bfdbfe;
+      border-radius: 12px;
+      padding: 40px;
+      text-align: center;
+    }
+    .contact-box h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 8px; }
+    .contact-box p { color: var(--muted); margin-bottom: 24px; }
+    .contact-links { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 24px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .exp-item { grid-template-columns: 1fr; gap: 8px; }
+      .exp-meta { display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <span class="nav-logo">Alp Soyupak</span>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="inner">
+      <p class="hero-eyebrow">Software · Security · Infrastructure</p>
+      <h1>Software &amp; Security<br>Engineer</h1>
+      <p class="hero-sub">
+        13+ years building production systems — from SCADA platforms and full-stack web apps
+        to enterprise security tooling and cloud infrastructure. I bridge development, security testing,
+        and operations.
+      </p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn btn-primary">Get in touch</a>
+        <a href="#experience" class="btn btn-outline">View experience</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="inner">
+      <p class="section-label">About</p>
+      <h2>What I bring to the table</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            I'm a software and security engineer with a Computer Engineering degree from the
+            University of Alberta and over a decade of experience across enterprise software,
+            industrial control systems, and application security.
+          </p>
+          <p>
+            My work spans full-stack development (C++, C#, JavaScript, Python), hands-on security testing
+            (DAST, Burp Suite, Fiddler, mitmproxy), and cloud/infrastructure operations (AWS, AKS, Docker, Kubernetes).
+            I'm fluent in English and Turkish.
+          </p>
+          <p>
+            I thrive in roles where technical depth matters — whether that's debugging a production
+            defect, designing a new system component, or helping customers close security findings.
+          </p>
+        </div>
+        <div class="about-highlights">
+          <div class="highlight-card">
+            <h4>Software Development</h4>
+            <p>Full-stack systems in C++, C#, JavaScript, Python — from SCADA platforms to web services.</p>
+          </div>
+          <div class="highlight-card">
+            <h4>Application Security</h4>
+            <p>DAST analysis, vulnerability reproduction, audit remediation, and security tooling with Burp Suite &amp; mitmproxy.</p>
+          </div>
+          <div class="highlight-card">
+            <h4>Cloud &amp; Infrastructure</h4>
+            <p>AWS, Azure AKS, Docker, Kubernetes, IIS, Nginx — deployment, troubleshooting, and ops across RHEL/Ubuntu.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="inner">
+      <p class="section-label">Experience</p>
+      <h2>Where I've worked</h2>
+      <div class="exp-list">
+
+        <div class="exp-item">
+          <div class="exp-meta">
+            <div class="exp-date">Dec 2024 – Nov 2025</div>
+            <div class="exp-company">Invicti Security</div>
+            <div class="exp-location">Remote</div>
+          </div>
+          <div class="exp-body">
+            <div class="exp-title">Senior Technical Support Engineer</div>
+            <ul class="exp-bullets">
+              <li>Tested and validated product behavior across RHEL, Ubuntu, AKS, and AWS deployments; produced reproducible configuration playbooks.</li>
+              <li>Conducted DAST analyses with Burp Suite, Fiddler, and mitmproxy to replicate attacks and generate evidence for customer audits.</li>
+              <li>Identified, debugged, and patched defects in the C#/.NET codebase; validated fixes with unit and integration tests.</li>
+              <li>Updated the internal ticket distribution bot (JavaScript), implementing new routing logic and improving efficiency.</li>
+              <li>Mentored junior engineers and contributed to resolution workflows and knowledge base documentation.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-meta">
+            <div class="exp-date">Nov 2023 – Dec 2024</div>
+            <div class="exp-company">Invicti Security</div>
+            <div class="exp-location">Remote</div>
+          </div>
+          <div class="exp-body">
+            <div class="exp-title">Technical Support Engineer</div>
+            <ul class="exp-bullets">
+              <li>Resolved 60+ customer-reported issues monthly for enterprise web security scanners; maintained 80–90% first-line resolution rate.</li>
+              <li>Performed server and application troubleshooting (IIS, Nginx, Linux), SSO integrations (Azure AD, Okta), and cloud ops (AWS).</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-meta">
+            <div class="exp-date">Jan 2022 – Mar 2023</div>
+            <div class="exp-company">Willowglen Systems</div>
+            <div class="exp-location">Remote</div>
+          </div>
+          <div class="exp-body">
+            <div class="exp-title">Technical Analyst (Contractor)</div>
+            <ul class="exp-bullets">
+              <li>Expanded a SCADA train movement and passenger information system in C++, Ext JS, and TCP/UDP — serving tens of thousands of daily users.</li>
+              <li>Increased data throughput 5× by redesigning a JSON model into a buffered C++/Qt/Ext JS architecture (50,000+ records vs. 10,000 previously).</li>
+              <li>Designed a multithreaded Python simulation tool for protocol message emulation, preventing configuration disruptions in production.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-meta">
+            <div class="exp-date">Aug 2012 – Feb 2015</div>
+            <div class="exp-company">Willowglen Systems</div>
+            <div class="exp-location">Edmonton, AB</div>
+          </div>
+          <div class="exp-body">
+            <div class="exp-title">Software Developer</div>
+            <ul class="exp-bullets">
+              <li>Designed and implemented interface and web service components for an enterprise SCADA system handling 1,000,000+ live data points using Ext JS, C++, T-SQL, and REST APIs.</li>
+              <li>Built internal testing tools with Python, Java Selenium, and GUnit to cover front-end and back-end components.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-meta">
+            <div class="exp-date">Dec 2015 – Jul 2017</div>
+            <div class="exp-company">Isra Vision AG</div>
+            <div class="exp-location">Istanbul, TR</div>
+          </div>
+          <div class="exp-body">
+            <div class="exp-title">Senior Software Engineer</div>
+            <ul class="exp-bullets">
+              <li>Developed UI interfaces for defect visualization in industrial manufacturing applications (C#, C++).</li>
+              <li>Collaborated remotely with engineering teams in Germany on design and troubleshooting.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-meta">
+            <div class="exp-date">Oct 2017 – Dec 2021</div>
+            <div class="exp-company">Apple Inc.</div>
+            <div class="exp-location">Remote</div>
+          </div>
+          <div class="exp-body">
+            <div class="exp-title">Technical Support Advisor</div>
+            <ul class="exp-bullets">
+              <li>Delivered frontline technical support across English and Turkish lines of business; maintained 90%+ CSAT and exceeded all KPI targets.</li>
+              <li>Handled 40+ support tasks daily across devices, accounts, and software; recognized annually with performance bonuses.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="inner">
+      <p class="section-label">Skills</p>
+      <h2>Technologies &amp; tools</h2>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <h4>Languages</h4>
+          <div class="tags">
+            <span class="tag">C++</span>
+            <span class="tag">C#</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">Python</span>
+            <span class="tag">Java</span>
+            <span class="tag">PHP</span>
+            <span class="tag">C</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>Security</h4>
+          <div class="tags">
+            <span class="tag">Burp Suite</span>
+            <span class="tag">mitmproxy</span>
+            <span class="tag">Fiddler</span>
+            <span class="tag">DAST</span>
+            <span class="tag">Wireshark</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>Cloud &amp; Infra</h4>
+          <div class="tags">
+            <span class="tag">AWS</span>
+            <span class="tag">Azure / AKS</span>
+            <span class="tag">Docker</span>
+            <span class="tag">Kubernetes</span>
+            <span class="tag">IIS</span>
+            <span class="tag">Nginx</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>Systems &amp; OS</h4>
+          <div class="tags">
+            <span class="tag">Linux / RHEL</span>
+            <span class="tag">Ubuntu</span>
+            <span class="tag">SCADA</span>
+            <span class="tag">TCP/UDP</span>
+            <span class="tag">gdb</span>
+            <span class="tag">Valgrind</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>Web &amp; Frameworks</h4>
+          <div class="tags">
+            <span class="tag">Ext JS</span>
+            <span class="tag">Qt</span>
+            <span class="tag">REST</span>
+            <span class="tag">gRPC</span>
+            <span class="tag">HTML/CSS</span>
+            <span class="tag">Selenium</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>Data &amp; Tooling</h4>
+          <div class="tags">
+            <span class="tag">SQL / T-SQL</span>
+            <span class="tag">MySQL</span>
+            <span class="tag">Grafana</span>
+            <span class="tag">Git</span>
+            <span class="tag">Jira</span>
+            <span class="tag">Zendesk</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="inner">
+      <p class="section-label">Contact</p>
+      <h2>Let's connect</h2>
+      <div class="contact-box">
+        <h3>Open to new opportunities</h3>
+        <p>Whether it's a software engineering, security, or solutions engineering role — I'd love to hear from you.</p>
+        <div class="contact-links">
+          <a href="mailto:asoyupak@ualberta.ca" class="btn btn-primary">asoyupak@ualberta.ca</a>
+          <a href="https://www.linkedin.com/in/alp-s-03b53b148" target="_blank" rel="noopener" class="btn btn-outline">LinkedIn</a>
+          <a href="https://github.com/alpsoyupak" target="_blank" rel="noopener" class="btn btn-outline">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Alp Soyupak · Built with HTML &amp; CSS</p>
+  </footer>
+
+</body>
+</html>
